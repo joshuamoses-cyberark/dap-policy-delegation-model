@@ -1,0 +1,11 @@
+- &SRK
+  - !host
+    id: srk-one/service_account/default
+  - !host
+    id: srk-two/service_account/default
+  - !host
+    id: srk-three/service_account/default
+
+- !grant
+    role: !group SRKHosts
+    members: *SRK
