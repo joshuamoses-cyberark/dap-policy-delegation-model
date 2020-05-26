@@ -1,0 +1,3 @@
+- !grant
+  role: !layer conjur/seed-generation/consumers
+  member: !host /conjur/authn-k8s/conjur-env/apps/conjur/service_account/cyberark-dap-follower
