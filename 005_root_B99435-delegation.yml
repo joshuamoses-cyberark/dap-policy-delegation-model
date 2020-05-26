@@ -1,0 +1,17 @@
+- &SRKAdmins
+  - !host
+    id: srk/admin_account/default
+
+- !group B99435/SRKHosts
+
+- !policy
+  id: B99435
+  owner: !host srk/admin_account/default
+
+- !grant
+  role: !group vault/LOBName/safeName/delegation/consumers
+  member: !group B99435/SRKHosts
+
+- !permit
+  role: !group B99435/SRKHosts
+  resource: !webservice conjur/authn-k8s/conjur-env
