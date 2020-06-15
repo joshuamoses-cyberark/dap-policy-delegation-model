@@ -37,12 +37,7 @@
           kubernetes/authentication-container-name: {{ CONTAINER NAME }}
           # Uncomment the following line to display the platform's icon in the UI
           # <platform>: "true"
-#######OLD WAY#######
-#      - !host
-#        id:  bank-deposit-services-st2/service_account/default
-#        annotations:
-#          kubernetes/authentication-container-name: authenticator
-#####################
+    
     # These `authenticated-resources` represent logical applications
     # or workloads and can be authenticated with Conjur.
     - !grant
