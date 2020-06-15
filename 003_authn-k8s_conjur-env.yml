@@ -3,7 +3,7 @@
 # =================================================
 - !policy
   # NOTE - This is per cluster
-  id: conjur/authn-k8s/conjur-env
+  id: conjur/authn-k8s/{{ BRANCH }}
   body:
   # Runtime configuration variables required by the authenticator.
   # Variables prefixed with `kubernetes/*` are only required when
@@ -21,7 +21,7 @@
   # The `apps` policy defines K8s resources that
   # can be authenticated.
   - !policy
-    id: apps
+    id: {{ LAYER }}
     body:
     # All application roles that are run in K8s must have
     # membership in the `apps` layer
@@ -30,11 +30,11 @@
     # `authenticated-resources` is an array of hosts that map to
     # resources in K8s. The naming convention is
     # namespace/resource type/resource name
-    - &authenticated-resources-conjur-env
+    - &authenticated-resources-{{ BRANCH }}
       - !host
-        id: conjur/service_account/cyberark-dap-follower
+        id: conjur/service_account/{{ ACCOUNT }}
         annotations:
-          kubernetes/authentication-container-name: seedfetcher
+          kubernetes/authentication-container-name: {{ CONTAINER NAME }}
           # Uncomment the following line to display the platform's icon in the UI
           # <platform>: "true"
 #######OLD WAY#######
@@ -47,10 +47,10 @@
     # or workloads and can be authenticated with Conjur.
     - !grant
       role: !layer
-      members: *authenticated-resources-conjur-env
+      members: *authenticated-resources-{{ BRANCH }}
 
   # Members of `apps` are allowed to authenticate
   - !permit
-    role: !layer apps
+    role: !layer {{ LAYER }}
     privilege: [ authenticate ]
     resource: !webservice

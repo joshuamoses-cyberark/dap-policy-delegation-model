@@ -1,0 +1,35 @@
+# Define HA Cluster
+#
+
+- !policy
+  id: conjur
+  body:
+    - !policy
+        id: cluster/{{ CLUSTER }}
+        annotations:
+          ttl: 300
+        body:
+        - !layer
+        - &hosts
+          - !host
+            id: {{ NODE }}
+          - !host
+            id: {{ NODE }}
+          - !host
+            id: {{ NODE }}
+        - !grant
+          role: !layer
+          member: *hosts
+          
+
+#  Register new admin account for API access
+#
+
+- &admins
+  - !host
+    id: admin
+
+- !grant
+  role: !user admin
+  members: *admins
+

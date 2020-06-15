@@ -1,11 +1,7 @@
-- &SRK
+- &{{ HOST CLUSTER }}
   - !host
-    id: srk-one/service_account/default
-  - !host
-    id: srk-two/service_account/default
-  - !host
-    id: srk-three/service_account/default
+    id: {{ APP HOST }}/service_account/default
 
 - !grant
-    role: !group SRKHosts
-    members: *SRK
+    role: !group {{ GROUP HOSTS }}
+    members: *{{ HOST CLUSTER }}

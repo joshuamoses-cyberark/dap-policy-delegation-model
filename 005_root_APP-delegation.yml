@@ -1,0 +1,17 @@
+- & {{ ADMIN GROUP }}
+  - !host
+    id: {{ APP }}/admin_account/default
+
+- !group {{ APP IDENTIFIER }}/{{ GROUP HOSTS }}
+
+- !policy
+  id: {{ APP IDENTIFIER }}
+  owner: !host {{ APP }}/admin_account/default #can also be *{{ ADMIN GROUP }} 
+
+- !grant
+  role: !group vault/LOBName/safeName/delegation/consumers
+  member: !group {{ APP IDENTIFIER }}/{{ GROUP HOSTS }}
+
+- !permit
+  role: !group {{ APP IDENTIFIER }}/{{ GROUP HOSTS }}
+  resource: !webservice conjur/authn-k8s/{{ BRANCH }}
