@@ -8,10 +8,10 @@ standby_fqdn_one=""
 standby_fqdn_two=""
 #ADD FOR BIGGER ENV
 
-CONJUR_ACCOUNT="kublab"
-container="dap"
+CONJUR_ACCOUNT=""
+container=""
 
-authenticators="authn,authn-k8s,test"
+authenticators=""
 
 #####
 # Generate master alt name value
